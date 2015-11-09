@@ -10,7 +10,7 @@ import (
 func main() {
 	const layout = "20060102"
 	t := time.Now()
-	dirname := t.Format(layout) + "test"
+	dirname := t.Format(layout)
 	p, _ := os.Getwd()
 	pathname := p + "/" + dirname
 	source_file_path := p + "/README.md.template"
