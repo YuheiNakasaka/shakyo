@@ -1,6 +1,6 @@
 $(function(){
   ReactDOM.render(
-    <MessageBox />,
+    <MessageBox url="/messages/" />,
     document.getElementById('content')
   )
 })
