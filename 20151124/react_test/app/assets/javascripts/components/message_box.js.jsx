@@ -1,20 +1,6 @@
 var MessageBox = React.createClass({
   getInitialState: function() {
-    return { messages: [], isLoading: true };
-  },
-
-  componentDidMount: function() {
-     $.ajax({
-       url:      this.props.url,
-       dataType: 'json',
-       cache:    false,
-       success: function(messages) {
-         this.setState({ messages: messages, isLoading: false });
-       }.bind(this),
-       eror: function(_xhr, status, err) {
-         console.error(this.props.url, status, err.toString());
-       }.bind(this)
-     });
+    return { messages: this.props.messages };
   },
 
   handleMessageSubmit: function(message) {
@@ -41,17 +27,11 @@ var MessageBox = React.createClass({
       );
     });
 
-    if (this.state.isLoading) {
-      return (
-        <div>ロード中</div>
-      )
-    } else {
-      return (
-        <div className="messageBox">
-          {messageItems}
-          <MessageForm onMessageSubmit={this.handleMessageSubmit} />
-        </div>
-      )
-    }
+    return (
+      <div className="messageBox">
+        {messageItems}
+        <MessageForm onMessageSubmit={this.handleMessageSubmit} />
+      </div>
+    )
   }
 });
