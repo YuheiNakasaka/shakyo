@@ -1,0 +1,26 @@
+#!/bin/sh
+if git rev-parse --verify HEAD >/dev/null 2>&1
+then
+    against=HEAD
+else
+    # Initial commit: diff against an empty tree object
+    against=4b825dc642cb6eb9a060e54bf8d69288fbee4904
+fi
+# Redirect output to stderr.
+exec 1>&2
+
+IS_ERROR=0
+
+for FILE in `git diff-index --name-status $against -- | cut -c3-`; do
+  res=`find . | grep -v .git | grep -E "database\.yml|\.env|secrets\.yml|devise\.rb|secrets_token\.rb"`
+  if [ -n "$res" ]; then
+    echo "Before commited, check if these files are secure."
+    echo "If the files are secure, add --no-verify option and commit it."
+    echo "Ex) git commit -m 'example' --no-verify"
+    echo ""
+    echo $res
+  fi
+  # IS_ERROR=1ならcommitせずにエラーになる
+  IS_ERROR=1
+done
+exit $IS_ERROR
