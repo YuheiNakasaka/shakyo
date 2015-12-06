@@ -1,0 +1,5 @@
+ffmpeg -i ../test.mp4 -f image2 %7d.jpg
+ffmpeg -i 動画ファイル -f image2 0詰めの数字がファイル名の画像
+
+ffmpeg -f image2 -r 360 -i %7d.jpg -r 30 -an -vcodec libx264 -pix_fmt yuv420p output.mp4
+ffmpeg -f image2 -r フレーム画像数/作成したい動画の出力秒数 -i %7d.jpg -r 出力動画のFPS -an -vcodec libx264 -pix_fmt yuv420p output.mp4
