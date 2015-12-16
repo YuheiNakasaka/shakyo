@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>test</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <style type="text/css">
+        * {
+          padding: 0;
+          margin: 0;
+        }
+        .frame {
+          /*height: 164px;*/
+          background-color: #fff;
+          width: 320px;
+          z-index: 1000;
+        }
+        #header {
+          position: fixed;
+          top: 0;
+          height: 240px;
+        }
+        #sprite {
+          position: absolute;
+          width: 320px;
+        }
+        #footer {
+          position: fixed;
+          bottom: 0;
+          height: 88px;
+        }
+        .screen {
+          position: fixed;
+          width: 100%;
+          height: 100%;
+          background-color: #fff;
+        }
+        </style>
+  </head>
+  <body>
+    <div id="header" class="frame">a</div>
+    <div class="screen">a</div>
+    <img id="sprite" src="renchin_output_sprite.jpg">
+    <div id="footer" class="frame">a</div>
+    <script type="text/javascript">
+    $(function(){
+      var i = 1;
+      // var timer = setInterval(_scroll, 100); // これコメントアウトすると自動で動く
+
+      function _scroll () {
+        $('.screen').show();
+        $('#sprite').css('top','-'+(240*i)+'px');
+        $('.screen').hide();
+        if (65500 < (180*i)) {
+          clearInterval(timer);
+        }
+        i++;
+      }
+    });
+    </script>
+  </body>
+</html>
